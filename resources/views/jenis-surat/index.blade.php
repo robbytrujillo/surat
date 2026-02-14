@@ -51,7 +51,7 @@
 
                                         <form action="{{ route('jenis-surat.destroy', $item->id) }}" 
                                             method="POST" 
-                                            onsubmit="return confirm('Are you sure?')">
+                                            onsubmit="return confirm('Are you sure?')" style="display: inline">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn-table btn-delete">

@@ -78,12 +78,12 @@
                     <div class="mb-3">
                         <label class="form-label">Nama Jenis Surat</label>
                         <input type="text" 
-                            name="nama" 
-                            class="form-control @error('nama') is-invalid @enderror"
-                            value="{{ old('nama') }}"
+                            name="nama_surat" 
+                            class="form-control @error('nama_surat') is-invalid @enderror"
+                            value="{{ old('nama_surat') }}"
                             placeholder="Masukkan nama jenis surat">
                         
-                        @error('nama')
+                        @error('nama_surat')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>

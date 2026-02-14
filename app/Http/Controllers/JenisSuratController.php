@@ -33,6 +33,14 @@ class JenisSuratController extends Controller
     public function store(Request $request)
     {
         //
+        $validated = $request->validate([
+            'nama_surat' => 'required|string|max:255',
+            'template_surat' => 'required|string|max:255',
+        ]);
+
+        JenisSurat::create($validated);
+
+        return redirect()->route('jenis-surat.index')->with('success', 'Jenis Surat created successfully');
     }
 
     /**
