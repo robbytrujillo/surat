@@ -105,7 +105,7 @@
                     </div>
 
                     <div class="text-end">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary" style="border-raidus: 30px">
                             Simpan
                         </button>
                     </div>
