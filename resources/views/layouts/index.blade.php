@@ -205,6 +205,7 @@
     document.getElementById("year").innerHTML = new Date().getFullYear();
   </script>
 
+  @stack('scripts')
 </body>
 
 </html>
