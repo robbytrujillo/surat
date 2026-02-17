@@ -36,8 +36,8 @@ class JenisSuratController extends Controller
                         <tr>
                             <td style="width: 10%;">[[logo]]</td>
                             <td style="text-align: center; width: 90%;">
-                                <p style="margin: 0; text-align: center;"><span style="font-size: 14pt;">PEMERINTAH KABUPATEN BOGOR<br>KECAMATAN CIAMPEA<strong><br>DESA BOJONG RANGKAS </strong></span></p>
-                                <p style="margin: 0; text-align: center;"><em><span style="font-size: 10pt;"> Jl. Raya Cikampak No.100, RT.05/RW.06 Kode Pos: 16620</span></em></p>
+                                <p style="margin: 0; text-align: center;"><span style="font-size: 14pt;">PEMERINTAH KABUPATEN BOGOR<br>KECAMATAN GUNUNG PUTRI<strong><br>DESA BOJONG NANGKA</strong></span></p>
+                                <p style="margin: 0; text-align: center;"><em><span style="font-size: 10pt;">Jalan Raya Bojong Nangka, Kecamatan Gunung Putri, Kabupaten Bogor, Jawa Barat Kode Pos: 16963</span></em></p>
                             </td>
                         </tr>
                     </tbody>
@@ -84,7 +84,7 @@ class JenisSuratController extends Controller
         //
         $validated = $request->validate([
             'nama_surat' => 'required|string|max:255',
-            'template_surat' => 'required|string|max:255',
+            'template_surat' => 'required|string',
         ]);
 
         JenisSurat::create($validated);
@@ -106,6 +106,9 @@ class JenisSuratController extends Controller
     public function edit(string $id)
     {
         //
+        $jenissurat = JenisSurat::findOrFail($id);
+
+        return view('jenis-surat.edit', compact('jenissurat'));
     }
 
     /**
@@ -114,6 +117,15 @@ class JenisSuratController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $validated = $request->validate([
+            'nama_surat' => 'required|string|max:255',
+            'template_surat' => 'required|string',
+        ]);
+
+        $jenissurat = JenisSurat::findOrFail($id);
+        $jenissurat->update($validated);
+
+        return redirect()->route('jenis-surat.index')->with('success', 'Jenis Surat updated successfully');
     }
 
     /**
@@ -122,5 +134,10 @@ class JenisSuratController extends Controller
     public function destroy(string $id)
     {
         //
+        $jenissurat = JenisSurat::findOrFail($id);
+
+        $jenissurat->delete();
+
+        return redirect()->route('jenis-surat.index');
     }
 }

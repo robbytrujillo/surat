@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('jenis_surat', function (Blueprint $table) {
             $table->id();
             $table->string('nama_surat');
-            $table->string('template_surat');
+            $table->longText('template_surat');
             $table->timestamps();
         });
     }
