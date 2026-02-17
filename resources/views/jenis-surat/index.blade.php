@@ -44,7 +44,7 @@
                                     <div class="action-buttons">
 
                                         <a href="{{ route('jenis-surat.show', $item->id) }}" 
-                                        class="btn-table btn-view">Preview</a>
+                                        class="btn-table btn-view" target="_blank">Preview</a>
 
                                         <a href="{{ route('jenis-surat.edit', $item->id) }}" 
                                         class="btn-table btn-edit">Edit</a>

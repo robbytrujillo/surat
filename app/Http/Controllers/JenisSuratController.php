@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\JenisSurat;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class JenisSuratController extends Controller
@@ -92,12 +93,38 @@ class JenisSuratController extends Controller
         return redirect()->route('jenis-surat.index')->with('success', 'Jenis Surat created successfully');
     }
 
+    private function replaceImage($isi) {
+        $data = [];
+        $data['[[logo]]'] = '<img src="' . public_path('images/logo-bn.png') . '" alt="Logo" height="100">';
+
+        return strtr($isi, $data);
+    }
+
+    // private function replaceImage($isi) {
+    //     $path = public_path('images/logo-bn.png');
+    //     $type = pathinfo($path, PATHINFO_EXTENSION);
+    //     $data = file_get_contents($path);
+    //     $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+
+    //     $isi = str_replace('[[logo]]', '<img src="'.$base64.'" width="80">', $isi);
+
+    //     return $isi;
+    // }
+
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
         //
+        $jenissurat = JenisSurat::findOrFail($id);
+
+        $html = $this->replaceImage($jenissurat->template_surat);
+
+        $pdf = Pdf::setPaper('a4', 'portrait');
+        $pdf->loadHTML($html);
+                
+        return $pdf->stream('surat.pdf');
     }
 
     /**
