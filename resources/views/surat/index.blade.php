@@ -3,9 +3,9 @@
 @section('content')
     <article class="container article">
 
-        <h2 class="h2 article-title">Hi Elizabeth</h2>
+        {{--  <h2 class="h2 article-title">Hi Elizabeth</h2>
 
-        <p class="article-subtitle">Welcome to Surat</p>
+        <p class="article-subtitle">Welcome to Surat</p>  --}}
 
         <!-- 
         - #HOME
@@ -16,14 +16,14 @@
 
        <div class="card profile-card">
         
-        {{--  <a href="https://www.contoh.com" style="text-decoration: none; padding: 10px 20px; background-color: #007BFF; color: white; border-radius: 5px; display: inline-block;">  --}}
-</a>
+        {{--  <a href="https://www.contoh.com" style="text-decoration: none; padding: 10px 20px; background-color: #007BFF; color: white; border-radius: 5px; display: inline-block;">
+</a>  --}}
 
         <div class="section-title-wrapper">
             <h3 class="section-title">Daftar Surat</h3>
         </div>
 
-        <a href="{{ route('surat.create') }}" class="button" style="text-decoration: none; padding: 10px 20px; background-color: #007BFF; color: white; border-radius: 30px; display: inline-block;">Tambah Jenis Surat</a>
+        <a href="{{ route('surat.create') }}" class="button" style="text-decoration: none; padding: 10px 20px; background-color: #007BFF; color: white; border-radius: 30px; display: inline-block;">Tambah Surat</a>
             <div class="table-wrapper">
                 <table class="custom-table">
 
@@ -56,17 +56,17 @@
                                     <div class="action-buttons">
 
                                         <a href="{{ route('surat.show', $item->id) }}" 
-                                        class="btn-table btn-view" target="_blank">Preview</a>
+                                        class="btn-table btn-view" style="border-radius: 30px" target="_blank">Preview</a>
 
                                         <a href="{{ route('surat.edit', $item->id) }}" 
-                                        class="btn-table btn-edit">Edit</a>
+                                        class="btn-table btn-edit" style="border-radius: 30px">Edit</a>
 
                                         <form action="{{ route('surat.destroy', $item->id) }}" 
                                             method="POST" 
                                             onsubmit="return confirm('Are you sure?')" style="display: inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn-table btn-delete">
+                                            <button type="submit" class="btn-table btn-delete" style="border-radius: 30px">
                                                 Delete
                                             </button>
                                         </form>

@@ -156,9 +156,9 @@
   <footer class="footer">
     <div class="container">
 
-      <ul class="footer-list">
+      {{--  <ul class="footer-list">  --}}
 
-        <li class="footer-item">
+        {{--  <li class="footer-item">
           <a href="#" class="footer-link">About</a>
         </li>
 
@@ -180,9 +180,9 @@
 
         <li class="footer-item">
           <a href="#" class="footer-link">Careers</a>
-        </li>
+        </li>  --}}
 
-      </ul>
+      {{--  </ul>  --}}
 
       {{--  <p class="copyright">
         &copy; 2022 <a href="#" class="copyright-link">codewithsadee</a>. All Rights Reserved

@@ -3,9 +3,9 @@
 @section('content')
     <article class="container article">
 
-        <h2 class="h2 article-title">Hi Elizabeth</h2>
+        {{--  <h2 class="h2 article-title">Hi Elizabeth</h2>
 
-        <p class="article-subtitle">Welcome to Jenis Surat</p>
+        <p class="article-subtitle">Welcome to Jenis Surat</p>  --}}
 
         <!-- 
         - #HOME
@@ -17,7 +17,7 @@
        <div class="card profile-card">
         
         {{--  <a href="https://www.contoh.com" style="text-decoration: none; padding: 10px 20px; background-color: #007BFF; color: white; border-radius: 5px; display: inline-block;">  --}}
-</a>
+{{--  </a>  --}}
 
         <div class="section-title-wrapper">
             <h3 class="section-title">Tambah Jenis Surat</h3>
