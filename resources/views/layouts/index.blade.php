@@ -74,7 +74,6 @@
               <a href="{{ route('jenis-surat.index') }}" class="navbar-link icon-box">
                 {{--  <span class="material-symbols-rounded  icon">folder</span>  --}}
                 <span class="material-symbols-rounded  icon">list</span>
-
                 <span>Jenis Surat</span>
               </a>
             </li>
@@ -82,7 +81,6 @@
             <li>
               <a href="{{ route('surat.index') }}" class="navbar-link icon-box">
                 <span class="material-symbols-rounded  icon">files</span>
-
                 <span>Surat</span>
               </a>
             </li>
@@ -90,7 +88,6 @@
             <li>
               <a href="#" class="navbar-link icon-box">
                 <span class="material-symbols-rounded  icon">bar_chart</span>
-
                 <span>Reports</span>
               </a>
             </li>
@@ -98,7 +95,6 @@
             <li>
               <a href="#" class="navbar-link icon-box">
                 <span class="material-symbols-rounded  icon">settings</span>
-
                 <span>Settings</span>
               </a>
             </li>
@@ -137,17 +133,9 @@
     </div>
   </header>
 
-
-
-
-
   <main>
     @yield('content')
   </main>
-
-
-
-
 
   <!-- 
     - #FOOTER
