@@ -109,5 +109,10 @@ class SuratController extends Controller
     public function destroy(string $id)
     {
         //
+        $surat = Surat::findOrFail($id);
+
+        $surat->delete();
+
+        return redirect()->route('surat.index');
     }
 }
