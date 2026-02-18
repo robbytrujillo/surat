@@ -5,7 +5,7 @@
 
         <h2 class="h2 article-title">Hi Elizabeth</h2>
 
-        <p class="article-subtitle">Welcome to Jenis Surat</p>
+        <p class="article-subtitle">Welcome to Surat</p>
 
         <!-- 
         - #HOME
@@ -20,10 +20,10 @@
 </a>
 
         <div class="section-title-wrapper">
-            <h3 class="section-title">Tambah Jenis Surat</h3>
+            <h3 class="section-title">Tambah Surat</h3>
         </div>
 
-        <a href="{{ route('jenis-surat.index') }}" class="button" style="text-decoration: none; padding: 10px 20px; background-color: #dee4ea; color: rgb(25, 24, 24); border-radius: 30px; display: inline-block;">Kembali</a>
+        <a href="{{ route('surat.index') }}" class="button" style="text-decoration: none; padding: 10px 20px; background-color: #dee4ea; color: rgb(25, 24, 24); border-radius: 30px; display: inline-block;">Kembali</a>
             <div class="table-wrapper">
                 {{--  <table class="custom-table">
 
@@ -72,32 +72,20 @@
                     </tbody>
 
                 </table>  --}}
-                <form action="{{ route('jenis-surat.store') }}" method="POST">
+                <form action="{{ route('surat.store') }}" method="POST">
                     @csrf
-
+                    <input type="hidden" name="jenis_surat_id" value="{{ $data['jenis_surat_id'] }}">
+                    <input type="hidden" name="nomor_surat" value="{{ $data['nomor_surat'] }}">
+                    <input type="hidden" name="tanggal_surat" value="{{ $data['tanggal_surat'] }}">
+                    {{--  <input type="hidden" name="nama_surat" value="{{ $data['nama_surat'] }}">  --}}
                     <div class="mb-3">
-                        <label class="form-label">Nama Jenis Surat</label>
-                        <input type="text" 
-                            name="nama_surat" 
-                            class="form-control @error('nama_surat') is-invalid @enderror"
-                            value="{{ old('nama_surat') }}"
-                            placeholder="Masukkan nama jenis surat">
-                        
-                        @error('nama_surat')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Template Surat</label>
-                        <textarea name="template_surat" 
+                        <label class="form-label">Isi Surat</label>
+                        <textarea name="isi_surat" 
                                 rows="4"
-                                class="form-control @error('template_surat') is-invalid @enderror"
-                                placeholder="Masukkan template surat">{{ $template }}</textarea>
+                                class="form-control @error('isi_surat') is-invalid @enderror"
+                                placeholder="Masukkan isi surat">{{ $html }}</textarea>
                         
-                        @error('template_surat')
+                        @error('isi_surat')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
@@ -288,3 +276,4 @@
     }
     </script>
 @endpush
+

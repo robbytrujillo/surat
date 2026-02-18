@@ -44,17 +44,17 @@
                                     <div class="action-buttons">
 
                                         <a href="{{ route('jenis-surat.show', $item->id) }}" 
-                                        class="btn-table btn-view" target="_blank">Preview</a>
+                                        class="btn-table btn-view" target="_blank" style="border-radius: 30px">Preview</a>
 
                                         <a href="{{ route('jenis-surat.edit', $item->id) }}" 
-                                        class="btn-table btn-edit">Edit</a>
+                                        class="btn-table btn-edit" style="border-radius: 30px">Edit</a>
 
                                         <form action="{{ route('jenis-surat.destroy', $item->id) }}" 
                                             method="POST" 
                                             onsubmit="return confirm('Are you sure?')" style="display: inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn-table btn-delete">
+                                            <button type="submit" class="btn-table btn-delete" style="border-radius: 30px">
                                                 Delete
                                             </button>
                                         </form>

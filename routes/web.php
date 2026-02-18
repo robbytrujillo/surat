@@ -11,5 +11,6 @@ Route::get('/', function () {
 
 Route::resource('jenis-surat', JenisSuratController::class);
 
+Route::post('surat/preview', [SuratController::class, 'preview'])->name('surat.preview');
 Route::resource('surat', SuratController::class);
     
