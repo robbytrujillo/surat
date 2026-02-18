@@ -35,14 +35,6 @@
                             <th style="width: 220px;" style="text-align: center;">Nama Surat</th>
                             <th style="width: 100px;">Action</th>
                         </tr>
-
-                        {{--  @if ($surat->isEmpty())
-                            <tr>
-                                <td class="text-center" colspan="5">
-                                    Tidak ada data surat
-                                </td>
-                            </tr>
-                        @endif  --}}
                     </thead>
 
                     <tbody>
@@ -82,14 +74,9 @@
                             </tr>
                         @endforelse
                     </tbody>
-
                 </table>
             </div>
-
         </div>
-
-       
-
     </article>
 
     <!-- Modal Create -->
