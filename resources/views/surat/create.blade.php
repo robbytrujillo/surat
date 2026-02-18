@@ -137,7 +137,7 @@
 
                     <div class="text-end">
                         <button type="submit" class="btn btn-primary" style="border-radius: 30px">
-                            Simpan
+                            Selanjutnya
                         </button>
                     </div>
                 </form>

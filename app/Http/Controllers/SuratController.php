@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\JenisSurat;
 use App\Models\Surat;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class SuratController extends Controller
@@ -79,12 +80,27 @@ class SuratController extends Controller
         return redirect()->route('surat.index')->with('success', 'Surat created successfully');
     }
 
+    private function replaceImage($isi) {
+        $data = [];
+        $data['[[logo]]'] = '<img src="' . public_path('images/logo-bn.png') . '" alt="Logo" height="100">';
+
+        return strtr($isi, $data);
+    }
+
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
         //
+        $surat = Surat::findOrFail($id);
+
+        $html = $this->replaceImage($surat->isi_surat);
+
+        $pdf = Pdf::setPaper('a4', 'portrait');
+        $pdf->loadHTML($html);
+                
+        return $pdf->stream('surat.pdf');
     }
 
     /**
@@ -104,6 +120,14 @@ class SuratController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $validated = $request->validate([
+            'isi_surat' => 'required'
+        ]);
+
+        $surat = Surat::findOrFail($id);
+        $surat->update($validated);
+
+        return redirect()->route('surat.index')->with('success', 'Surat updated successfully');
     }
 
     /**

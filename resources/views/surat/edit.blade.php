@@ -74,16 +74,18 @@
                 </table>  --}}
                 <form action="{{ route('surat.update', $surat->id) }}" method="POST">
                     @csrf
-                    <input type="hidden" name="jenis_surat_id" value="{{ $data['jenis_surat_id'] }}">
+                    @method('PUT')
+
+                    {{--  <input type="hidden" name="jenis_surat_id" value="{{ $data['jenis_surat_id'] }}">
                     <input type="hidden" name="nomor_surat" value="{{ $data['nomor_surat'] }}">
-                    <input type="hidden" name="tanggal_surat" value="{{ $data['tanggal_surat'] }}">
+                    <input type="hidden" name="tanggal_surat" value="{{ $data['tanggal_surat'] }}">  --}}
                     {{--  <input type="hidden" name="nama_surat" value="{{ $data['nama_surat'] }}">  --}}
                     <div class="mb-3">
                         <label class="form-label">Isi Surat</label>
                         <textarea name="isi_surat" 
                                 rows="4"
                                 class="form-control @error('isi_surat') is-invalid @enderror"
-                                placeholder="Masukkan isi surat">{{ $html }}</textarea>
+                                placeholder="Masukkan isi surat">{{ $surat->isi_surat }}</textarea>
                         
                         @error('isi_surat')
                             <div class="invalid-feedback">
@@ -94,7 +96,7 @@
 
                     <div class="text-end">
                         <button type="submit" class="btn btn-primary" style="border-radius: 30px">
-                            Simpan
+                            Update
                         </button>
                     </div>
                 </form>
