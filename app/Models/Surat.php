@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\JenisSurat;
 use Illuminate\Database\Eloquent\Model;
 
 class Surat extends Model
@@ -15,4 +16,8 @@ class Surat extends Model
         'tanggal_surat',
         'isi_surat',
     ];
+
+    public function jenis() {
+        return $this->belongsTo(JenisSurat::class, 'jenis_surat_id');
+    }
 }

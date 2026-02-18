@@ -32,7 +32,7 @@
                             <th style="width: 60px;">No</th>
                             <th style="width: 220px;" style="text-align: center;">Nomor Surat</th>
                             <th style="width: 220px;" style="text-align: center;">Tanggal Surat</th>
-                            <th style="width: 220px;" style="text-align: center;">Isi Surat</th>
+                            <th style="width: 220px;" style="text-align: center;">Nama Surat</th>
                             <th style="width: 100px;">Action</th>
                         </tr>
 
@@ -51,7 +51,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->nomor_surat }}</td>
                                 <td>{{ $item->tanggal_surat }}</td>
-                                <td>{{ $item->isi_surat }}</td>
+                                <td>{{ $item->jenis->nama_surat }}</td>
                                 <td>
                                     <div class="action-buttons">
 
