@@ -93,6 +93,9 @@ class SuratController extends Controller
     public function edit(string $id)
     {
         //
+        $surat = Surat::findOrFail($id);
+
+        return view('surat.edit', compact('surat'));
     }
 
     /**
