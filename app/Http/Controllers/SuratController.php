@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisSurat;
+use App\Models\Surat;
 use Illuminate\Http\Request;
 
 class SuratController extends Controller
@@ -12,6 +14,10 @@ class SuratController extends Controller
     public function index()
     {
         //
+        $jenissurat = JenisSurat::all();
+        $surat = Surat::latest()->get();
+
+        return view('surat.index', compact('jenissurat', 'surat'));
     }
 
     /**
