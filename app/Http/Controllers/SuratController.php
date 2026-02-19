@@ -21,6 +21,38 @@ class SuratController extends Controller
         return view('surat.index', compact('jenissurat', 'surat'));
     }
 
+    public static function bulanRomawi($bulan)
+    {
+        $map = [
+            1 => 'I', 2 => 'II', 3 => 'III',
+            4 => 'IV', 5 => 'V', 6 => 'VI',
+            7 => 'VII', 8 => 'VIII', 9 => 'IX',
+            10 => 'X', 11 => 'XI', 12 => 'XII',
+        ];
+
+        return $map[$bulan];
+    }
+
+    public static function generateNomorSurat($kode = 'SPD', $instansi = 'BOJONGNANGKA')
+    {
+        return DB::transaction(function () use ($kode, $instansi) {
+
+            $now = now();
+            $bulan = $now->month;
+            $tahun = $now->year;
+
+            $count = self::whereYear('tanggal_surat', $tahun)
+                ->whereMonth('tanggal_surat', $bulan)
+                ->lockForUpdate()
+                ->count();
+
+            $noUrut = str_pad($count + 1, 3, '0', STR_PAD_LEFT);
+
+            return $noUrut . '/' . $kode . '/' . $instansi . '/' 
+                . self::bulanRomawi($bulan) . '/' . $tahun;
+        });
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -35,8 +67,9 @@ class SuratController extends Controller
         
         // $template = $this->templateDasar();
         $jenissurat = JenisSurat::all();
+        $nomor_surat = Surat::generateNomorSurat();
 
-        return view('surat.create', compact('jenissurat'));
+        return view('surat.create', compact('jenissurat', 'nomor_surat'));
     }
 
     private function replaceTemplate($isi, $data) {
@@ -69,11 +102,13 @@ class SuratController extends Controller
     {
         //
         $validated = $request->validate([
-            'nomor_surat' => 'required|string|max:255',
+            // 'nomor_surat' => 'required|string|max:255',
             'tanggal_surat' => 'required|date',
             'jenis_surat_id' => 'required',
             'isi_surat' => 'required'
         ]);
+
+        $validated['nomor_surat'] = Surat::generateNomorSurat();
 
         Surat::create($validated);
 

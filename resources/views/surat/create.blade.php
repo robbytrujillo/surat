@@ -14,7 +14,7 @@
         <section class="home">
             
 
-       {{--  <div class="card profile-card">  --}}
+       <div class="card profile-card">
         
         {{--  <a href="https://www.contoh.com" style="text-decoration: none; padding: 10px 20px; background-color: #007BFF; color: white; border-radius: 5px; display: inline-block;">  --}}
 {{--  </a>  --}}
@@ -96,8 +96,8 @@
                         <input type="text" 
                             name="nomor_surat" 
                             class="form-control @error('nomor_surat') is-invalid @enderror"
-                            value="{{ old('nomor_surat') }}"
-                            placeholder="Masukkan nomor surat">
+                            value="{{ old('nomor_surat', $nomor_surat) }}"
+                            readonly>
                         
                         @error('nomor_surat')
                             <div class="invalid-feedback">
@@ -105,6 +105,7 @@
                             </div>
                         @enderror
                     </div>
+
                     
                     <div class="mb-3">
                         <label class="form-label">Tanggal Surat</label>
