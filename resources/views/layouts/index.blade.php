@@ -86,9 +86,9 @@
             </li>
 
             <li>
-              <a href="#" class="navbar-link icon-box">
-                <span class="material-symbols-rounded  icon">bar_chart</span>
-                <span>Reports</span>
+              <a href="{{ route('surat.index') }}" class="navbar-link icon-box">
+                <span class="material-symbols-rounded  icon">person</span>
+                <span>User</span>
               </a>
             </li>
 
