@@ -63,7 +63,7 @@
           <ul class="navbar-list">
 
             <li>
-              <a href="{{ route('index') }}" class="navbar-link active icon-box">
+              <a href="{{ url('/') }}" class="navbar-link active icon-box">
                 <span class="material-symbols-rounded  icon">grid_view</span>
 
                 <span>Home</span>
@@ -86,7 +86,7 @@
             </li>
 
             <li>
-              <a href="{{ route('surat.index') }}" class="navbar-link icon-box">
+              <a href="{{ route('user.index') }}" class="navbar-link icon-box">
                 <span class="material-symbols-rounded  icon">person</span>
                 <span>User</span>
               </a>
