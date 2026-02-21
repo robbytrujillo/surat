@@ -63,7 +63,7 @@
           <ul class="navbar-list">
 
             <li>
-              <a href="#" class="navbar-link active icon-box">
+              <a href="{{ route('index') }}" class="navbar-link active icon-box">
                 <span class="material-symbols-rounded  icon">grid_view</span>
 
                 <span>Home</span>
