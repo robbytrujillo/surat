@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('nomor_surat');
             $table->date('tanggal_surat');
             $table->longText('isi_surat');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }
