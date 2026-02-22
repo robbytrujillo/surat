@@ -37,6 +37,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+            'role' => 'required',
             // 'password_confirmation' => 'required|string|max:255'
         ]);
         
@@ -80,8 +81,9 @@ class UserController extends Controller
         //
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users,id,' .$id ,
             'password' => 'nullable|string|min:8|confirmed',
+            'role' => 'required',
             // 'password_confirmation' => 'required|string|max:255'
         ]);
         
@@ -92,6 +94,7 @@ class UserController extends Controller
         if ($request->password) {
             $user->password = Hash::make($request->password);
         }
+        $user->role = $request->role;
         
         $user->save();
 
