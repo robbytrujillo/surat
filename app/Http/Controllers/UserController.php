@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    use ImageUploadTrait;
     /**
      * Display a listing of the resource.
      */
@@ -46,6 +48,13 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->role = $request->role;
+        $user->jabatan = $request->jabatan;
+        
+        if ($request->tanda_tangan) {
+            $imgPath = $this->uploadImage($request, 'tanda_tangan', 'upload/tanda_tangan');
+            $user->tanda_tangan = $imgPath;
+        }
+
         $user->save();
 
 
@@ -95,6 +104,12 @@ class UserController extends Controller
             $user->password = Hash::make($request->password);
         }
         $user->role = $request->role;
+        $user->jabatan = $request->jabatan;
+        
+        if ($request->tanda_tangan) {
+            $imgPath = $this->uploadImage($request, 'tanda_tangan', 'upload/tanda_tangan');
+            $user->tanda_tangan = $imgPath;
+        }
         
         $user->save();
 

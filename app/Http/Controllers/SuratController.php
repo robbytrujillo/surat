@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\JenisSurat;
 use App\Models\Surat;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
@@ -68,8 +69,9 @@ class SuratController extends Controller
         // $template = $this->templateDasar();
         $jenissurat = JenisSurat::all();
         $nomor_surat = Surat::generateNomorSurat();
+        $penandatangan = User::where('role', 'penandatangan')->get();
 
-        return view('surat.create', compact('jenissurat', 'nomor_surat'));
+        return view('surat.create', compact('jenissurat', 'nomor_surat', 'penandatangan'));
     }
 
     private function replaceTemplate($isi, $data) {
@@ -77,6 +79,7 @@ class SuratController extends Controller
             '[[NAMA_SURAT]]' => $data['nama_surat'],
             '[[NOMOR_SURAT]]' => $data['nomor_surat'],
             '[[TANGGAL_SURAT]]' => date('d F Y', strtotime($data['tanggal_surat'])),
+            '[[NAMA_PENANDATANGAN]]' => $data['user']->name,
         ];
 
         return strtr($isi, $data);
@@ -84,13 +87,15 @@ class SuratController extends Controller
 
     public function preview(Request $request) {
         $jenissurat = JenisSurat::findOrFail($request->jenis_surat_id);
-
+        
         $data = $request->all();
+        
+        $data['user'] = User::find($request->user_id);
         $data['nama_surat'] = $jenissurat->nama_surat;
 
         $html = $this->replaceTemplate($jenissurat->template_surat, $data);
 
-        return view('surat.preview', compact('data','html'));
+        return view('surat.preview', compact('data', 'html'));
     }
 
    

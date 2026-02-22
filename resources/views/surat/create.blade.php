@@ -122,6 +122,22 @@
                         @enderror
                     </div>
 
+                    <div class="mb-3">
+                        <label class="form-label">Penandatangan</label>
+                        <select name="user_id" id="user_id" class="form-control">
+                            <option value="">--Pilih Penandatangan--</option>
+                            @foreach ($penandatangan as $item)
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
+                        
+                        @error('user_id')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
                     {{--  <div class="mb-3">
                         <label class="form-label">Isi Surat</label>
                         <textarea name="isi_surat" 

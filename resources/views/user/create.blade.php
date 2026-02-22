@@ -72,7 +72,7 @@
                     </tbody>
 
                 </table>  --}}
-                <form action="{{ route('user.store') }}" method="POST">
+                <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div class="mb-3">
@@ -143,6 +143,36 @@
                         </select>
                         
                         @error('role')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Jabatan</label>
+                        <input type="text" 
+                            name="jabatan" 
+                            class="form-control @error('jabatan') is-invalid @enderror"
+                            value="{{ old('jabatan') }}"
+                            placeholder="Masukkan jabatan">
+                        
+                        @error('jabatan')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Tanda Tangan</label>
+                        <input type="file" 
+                            name="tanda_tangan" 
+                            class="form-control @error('tanda_tangan') is-invalid @enderror"
+                            value="{{ old('tanda_tangan') }}"
+                            placeholder="Masukkan tanda tangan">
+                        
+                        @error('tanda_tangan')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
