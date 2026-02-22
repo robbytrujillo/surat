@@ -242,6 +242,24 @@
                             onAction: function() {
                                 ed.insertContent('[[TANGGAL_SURAT]]');
                             }
+                        }, {
+                            type: 'menuitem',
+                            text: 'Jabatan Penandatangan',
+                            onAction: function() {
+                                ed.insertContent('[[JABATAN_PENANDATANGAN]]');
+                            }
+                        }, {
+                            type: 'menuitem',
+                            text: 'Nama Penandatangan',
+                            onAction: function() {
+                                ed.insertContent('[[NAMA_PENANDATANGAN]]');
+                            }
+                        }, {
+                            type: 'menuitem',
+                            text: 'Tanda Tangan',
+                            onAction: function() {
+                                ed.insertContent('[[TANDA_TANGAN]]');
+                            }
                         }];
                         callback(items);
                     }

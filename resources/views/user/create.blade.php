@@ -135,6 +135,20 @@
                         @enderror
                     </div>
 
+                    <div class="mb-3">
+                        <label class="form-label">Role</label>
+                        <select name="role" id="role" class="form-control">
+                            <option value="admin">Admin</option>
+                            <option value="penandatangan">Penandatangan</option>
+                        </select>
+                        
+                        @error('role')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
                     {{--  <div class="mb-3">
                         <label class="form-label">Template Surat</label>
                         <textarea name="template_surat" 

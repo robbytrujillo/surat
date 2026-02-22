@@ -133,10 +133,10 @@
           </div>
 
           <div>
-            <data class="card-data" value="{{ $totalSurat }}">
-                {{ $totalSurat }}
+            <data class="card-data" value="{{ $totalJenisSurat }}">
+                {{ $totalJenisSurat }}
             </data>
-            <p class="card-text">Total Surat</p>
+            <p class="card-text">Total Jenis Surat</p>
           </div>
 
         </div>
@@ -148,10 +148,10 @@
           </div>
 
           <div>
-            <data class="card-data" value="{{ $totalJenisSurat }}">
-                {{ $totalJenisSurat }}
+            <data class="card-data" value="{{ $totalSurat }}">
+                {{ $totalSurat }}
             </data>
-            <p class="card-text">Total Jenis Surat</p>
+            <p class="card-text">Total Surat</p>
           </div>
 
         </div>

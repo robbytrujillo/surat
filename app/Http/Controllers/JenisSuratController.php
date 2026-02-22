@@ -56,15 +56,15 @@ class JenisSuratController extends Controller
                         </tr>
                         <tr>
                             <td style="width: 53.835%; text-align: center;"> </td>
-                            <td style="width: 46.165%; text-align: center;">Kepala Desa Bojong Rangkas</td>
+                            <td style="width: 46.165%; text-align: center;">[[JABATAN_PENANDATANGAN]]</td>
                         </tr>
                         <tr>
                             <td style="width: 53.835%; text-align: center;"> </td>
-                            <td style="width: 46.165%; text-align: center;"><br><br><br></td>
+                            <td style="width: 46.165%; text-align: center;"><br>[[TANDA_TANGAN]]<br><br></td>
                         </tr>
                         <tr>
                             <td style="width: 53.835%; text-align: center;"> </td>
-                            <td style="width: 46.165%; text-align: center;">Ir. Lorem Ipsum, MBA</td>
+                            <td style="width: 46.165%; text-align: center;">[[NAMA_PENANDATANGAN]]</td>
                         </tr>
                         <tr>
                             <td style="width: 53.835%; text-align: center;"> </td>
