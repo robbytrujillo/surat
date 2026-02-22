@@ -3,7 +3,7 @@
 @section('content')
 <article class="container article">
 
-    <h2 class="h2 article-title">Hi Elizabeth</h2>
+    <h2 class="h2 article-title">Hi <b style="color: red;">{{ Auth::user()->name }}</b></h2>
 
     <p class="article-subtitle">Welcome to Dashboard!</p>
 
@@ -51,14 +51,19 @@
 
         <div class="profile-card-wrapper">
 
-          <figure class="card-avatar">
-            <img src="./assets/images/avatar-1.jpg" alt="Elizabeth Foster" width="48" height="48">
+          @php
+              $colors = ['#4da3ff', '#ff6b6b', '#6bcf7f', '#ffa94d', '#845ef7'];
+              $bg = $colors[crc32(Auth::user()->name) % count($colors)];
+          @endphp
+
+          <figure class="card-avatar avatar-circle" style="background: {{ $bg }}">
+              {{ Auth::user()->initial }}
           </figure>
 
           <div>
-            <p class="card-title">Elizabeth Foster</p>
+            <p class="card-title"><b style="color: red;">{{ Auth::user()->name }}</b></p>
 
-            <p class="card-subtitle">Web & Graphic Designer</p>
+            <p class="card-subtitle">System pillars</p>
           </div>
 
         </div>
@@ -69,15 +74,15 @@
             <a href="mailto:xyz@mail.com" class="contact-link icon-box">
               <span class="material-symbols-rounded  icon">mail</span>
 
-              <p class="text">xyz@mail.com</p>
+              <p class="text">{{ Auth::user()->email }}</p>
             </a>
           </li>
 
           <li>
             <a href="tel:00123456789" class="contact-link icon-box">
-              <span class="material-symbols-rounded  icon">call</span>
+              <span class="material-symbols-rounded  icon">person</span>
 
-              <p class="text">+00 123-456-789</p>
+              <p class="text">{{ Auth::user()->role }}</p>
             </a>
           </li>
 
@@ -128,9 +133,10 @@
           </div>
 
           <div>
-            <data class="card-data" value="21">21</data>
-
-            <p class="card-text">Tasks Completed</p>
+            <data class="card-data" value="{{ $totalSurat }}">
+                {{ $totalSurat }}
+            </data>
+            <p class="card-text">Total Surat</p>
           </div>
 
         </div>
@@ -142,9 +148,10 @@
           </div>
 
           <div>
-            <data class="card-data" value="21">21</data>
-
-            <p class="card-text">Tasks Inprogress</p>
+            <data class="card-data" value="{{ $totalJenisSurat }}">
+                {{ $totalJenisSurat }}
+            </data>
+            <p class="card-text">Total Jenis Surat</p>
           </div>
 
         </div>

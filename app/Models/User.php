@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -44,5 +45,20 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    // tambahkan ini
+    public function getInitialAttribute()
+    {
+        $words = explode(' ', $this->name);
+        $initial = '';
+
+        foreach ($words as $word) {
+            if (!empty($word)) {
+                $initial .= strtoupper(substr($word, 0, 1));
+            }
+        }
+
+        return substr($initial, 0, 2);
     }
 }
