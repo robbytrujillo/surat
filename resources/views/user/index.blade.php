@@ -33,6 +33,7 @@
                             <th style="width: 220px;" style="text-align: center;">Nama</th>
                             <th style="width: 220px;" style="text-align: center;">Email</th>
                             <th style="width: 220px;" style="text-align: center;">Role</th>
+                            <th style="width: 220px;" style="text-align: center;">Jabatan</th>
                             <th style="width: 220px;" style="text-align: center;">Tanda Tangan</th>
                             <th style="width: 100px;">Action</th>
                         </tr>
@@ -46,10 +47,17 @@
                                 <td>{{ $item->email }}</td>
                                 <td>{{ $item->role }}</td>
                                 <td>
+                                    @if ($item->jabatan)
+                                        {{ $item->role }}
+                                    @else
+                                        -
+                                    @endif
+                                </td>
+                                <td>
                                     @if ($item->tanda_tangan) 
                                         <img src="{{ asset($item->tanda_tangan) }}" alt="tanda tangan" width="100">
                                     @else
-                                        Tidak ada tanda tangan
+                                        -
                                     @endif
                                 </td>
                                 <td>

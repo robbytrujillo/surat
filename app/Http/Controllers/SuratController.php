@@ -7,6 +7,7 @@ use App\Models\Surat;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SuratController extends Controller
 {
@@ -80,6 +81,8 @@ class SuratController extends Controller
             '[[NOMOR_SURAT]]' => $data['nomor_surat'],
             '[[TANGGAL_SURAT]]' => date('d F Y', strtotime($data['tanggal_surat'])),
             '[[NAMA_PENANDATANGAN]]' => $data['user']->name,
+            '[[JABATAN_PENANDATANGAN]]' => $data['user']->jabatan,
+            
         ];
 
         return strtr($isi, $data);
@@ -113,16 +116,34 @@ class SuratController extends Controller
             'isi_surat' => 'required'
         ]);
 
-        $validated['nomor_surat'] = Surat::generateNomorSurat();
+        // $validated['nomor_surat'] = Surat::generateNomorSurat();
 
-        Surat::create($validated);
+        $surat = new Surat();
+         $surat->nomor_surat = Surat::generateNomorSurat(); // ✅ PAKAI INI
+        $surat->tanggal_surat = $request->tanggal_surat;
+        $surat->jenis_surat_id = $request->jenis_surat_id;
+        $surat->isi_surat = $request->isi_surat;
+        $surat->user_id = auth()->id(); // lebih aman dari request
+        
+        $surat->save();
+
+        // Surat::create($validated);
 
         return redirect()->route('surat.index')->with('success', 'Surat created successfully');
     }
 
-    private function replaceImage($isi) {
+    private function replaceImage($isi, $ttd) {
         $data = [];
         $data['[[logo]]'] = '<img src="' . public_path('images/logo-bn.png') . '" alt="Logo" height="100">';
+        // $data['[[TANDA_TANGAN]]'] = '<img src="' . public_path($ttd) . '" alt="Ttd" height="100">';
+
+        // Tanda tangan
+        if ($ttd && file_exists(public_path('upload/tanda_tangan/' . $ttd))) {
+            $data['[[TANDA_TANGAN]]'] =
+                '<img src="' . public_path('upload/tanda_tangan/' . $ttd) . '" height="100">';
+        } else {
+            $data['[[TANDA_TANGAN]]'] = '';
+        }
 
         return strtr($isi, $data);
     }
@@ -135,7 +156,22 @@ class SuratController extends Controller
         //
         $surat = Surat::findOrFail($id);
 
-        $html = $this->replaceImage($surat->isi_surat);
+        // $ttd = "";
+        // if ($surat->user->tanda_tangan) {
+        //     $ttd = $surat->user->tanda_tangan;
+        // }
+
+        // dd($ttd);
+
+        $ttd = $surat->user?->tanda_tangan;
+
+        dd(
+    $ttd,
+    public_path('upload/tanda_tangan/' . $ttd),
+    file_exists(public_path('upload/tanda_tangan/' . $ttd))
+);
+
+        $html = $this->replaceImage($surat->isi_surat, $ttd);
 
         $pdf = Pdf::setPaper('a4', 'portrait');
         $pdf->loadHTML($html);

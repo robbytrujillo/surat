@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\JenisSurat;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -15,8 +16,14 @@ class Surat extends Model
         'nomor_surat',
         'tanggal_surat',
         'isi_surat',
+        'user_id',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    
     public function jenis()
     {
         return $this->belongsTo(JenisSurat::class, 'jenis_surat_id');

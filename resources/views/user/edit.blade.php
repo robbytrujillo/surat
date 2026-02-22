@@ -72,7 +72,7 @@
                     </tbody>
 
                 </table>  --}}
-                <form action="{{ route('user.update', $user->id) }}" method="POST">
+                <form action="{{ route('user.update', $user->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
@@ -144,6 +144,39 @@
                         </select>
                         
                         @error('role')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Jabatan</label>
+                        <input type="text" 
+                            name="jabatan" 
+                            class="form-control @error('jabatan') is-invalid @enderror"
+                            value="{{ old('jabatan', $user->jabatan) }}"
+                            placeholder="Masukkan jabatan">
+                        
+                        @error('jabatan')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Tanda Tangan</label>
+                        @if ($user->tanda_tangan)
+                            <img src="{{ asset($user->tanda_tangan) }}" alt="ttd" height="50" class="mb-3">
+                        @endif
+                        <input type="file" 
+                            name="tanda_tangan" 
+                            class="form-control @error('tanda_tangan') is-invalid @enderror"
+                            value="{{ old('tanda_tangan', $user->tanda_tangan) }}"
+                            placeholder="Masukkan tanda tangan">
+                        
+                        @error('tanda_tangan')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>

@@ -107,7 +107,7 @@ class UserController extends Controller
         $user->jabatan = $request->jabatan;
         
         if ($request->tanda_tangan) {
-            $imgPath = $this->uploadImage($request, 'tanda_tangan', 'upload/tanda_tangan');
+            $imgPath = $this->updateImage($request, 'tanda_tangan', 'upload/tanda_tangan', $user->tanda_tangan);
             $user->tanda_tangan = $imgPath;
         }
         
@@ -124,6 +124,9 @@ class UserController extends Controller
     {
         //
         $user = User::findOrFail($id);
+        if ($user->tanda_tangan) {
+            $this->deleteImage($user->tanda_tangan);
+        }
         $user->delete();
 
         return redirect()->route('user.index')->with('success', 'User deleted successfully');

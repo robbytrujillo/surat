@@ -77,6 +77,7 @@
                     <input type="hidden" name="jenis_surat_id" value="{{ $data['jenis_surat_id'] }}">
                     <input type="hidden" name="nomor_surat" value="{{ $data['nomor_surat'] }}">
                     <input type="hidden" name="tanggal_surat" value="{{ $data['tanggal_surat'] }}">
+                    {{--  <input type="hidden" name="user_id" value="{{ $data['user']->id }}">  --}}
                     {{--  <input type="hidden" name="nama_surat" value="{{ $data['nama_surat'] }}">  --}}
                     <div class="mb-3">
                         <label class="form-label">Isi Surat</label>
