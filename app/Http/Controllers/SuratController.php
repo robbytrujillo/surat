@@ -139,8 +139,8 @@ class SuratController extends Controller
 
         // Tanda tangan
         if ($ttd && file_exists(public_path('upload/tanda_tangan/' . $ttd))) {
-            $data['[[TANDA_TANGAN]]'] =
-                '<img src="' . public_path('upload/tanda_tangan/' . $ttd) . '" height="100">';
+            $path = public_path('upload/tanda_tangan/' . $ttd);
+            $data['[[TANDA_TANGAN]]'] = '<img src="' . $path . '" height="100">';
         } else {
             $data['[[TANDA_TANGAN]]'] = '';
         }
@@ -154,22 +154,20 @@ class SuratController extends Controller
     public function show(string $id)
     {
         //
-        $surat = Surat::findOrFail($id);
+        // $surat = Surat::findOrFail($id);
+        $surat = Surat::with('user')->findOrFail($id);
 
         // $ttd = "";
         // if ($surat->user->tanda_tangan) {
         //     $ttd = $surat->user->tanda_tangan;
         // }
 
-        // dd($ttd);
-
         $ttd = $surat->user?->tanda_tangan;
 
-        dd(
-    $ttd,
-    public_path('upload/tanda_tangan/' . $ttd),
-    file_exists(public_path('upload/tanda_tangan/' . $ttd))
-);
+        // dd($ttd);
+
+        // $ttd = $surat->user?->tanda_tangan;
+
 
         $html = $this->replaceImage($surat->isi_surat, $ttd);
 
